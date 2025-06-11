@@ -1,0 +1,48 @@
+from datetime import datetime
+import webbrowser
+
+# Daily devotional or fun playlists (Hindi & Marathi mixed)
+playlists = {
+    "Monday": [  # Shiva
+        "https://www.youtube.com/watch?v=1xH2WzDYIJk",  # Shiva Tandava
+        "https://www.youtube.com/watch?v=I7JBU6I0L-Y",  # Marathi Shiva Bhaktigeet
+    ],
+    "Tuesday": [  # Hanuman
+        "https://www.youtube.com/watch?v=zrYpTzM1kB8",  # Hanuman Chalisa
+        "https://www.youtube.com/watch?v=8yWr_kIw4Rw",  # Marathi Hanuman Bhajan
+    ],
+    "Wednesday": [  # Krishna
+        "https://www.youtube.com/watch?v=paiHuoG1eDc",  # Krishna Bhajan
+        "https://www.youtube.com/watch?v=MQWZAbtAh8E",  # Marathi Krishna Aarti
+    ],
+    "Thursday": [  # Sai Baba / Vishnu
+        "https://www.youtube.com/watch?v=2T_hnEcHnR8",  # Vishnu Sahasranama
+        "https://www.youtube.com/watch?v=g2X6_9mJ6ng",  # Marathi Sai Baba Bhajan
+    ],
+    "Friday": [  # Lakshmi / Durga
+        "https://www.youtube.com/watch?v=7QUtEmBT_-w",  # Laxmi Aarti Hindi
+        "https://www.youtube.com/watch?v=4Te9CrsHuMs",  # Durga Bhakti Marathi
+    ],
+    "Saturday": [  # Shani or Fun
+        "https://www.youtube.com/watch?v=VhQk1h3is2o",  # Chill Lo-Fi Hindi
+        "https://www.youtube.com/watch?v=TiRx5zq9R4A",  # Marathi Comedy Songs
+    ],
+    "Sunday": [  # Surya or Fun
+        "https://www.youtube.com/watch?v=VnYEK7aeE3U",  # Morning Vibes Hindi
+        "https://www.youtube.com/watch?v=J9t6T1_Rxlo",  # Marathi Feel-Good Songs
+    ],
+}
+
+# Get the current day (e.g., "Monday")
+today = datetime.now().strftime("%A")
+
+# Get the corresponding playlist
+todays_playlist = playlists.get(today, [])
+
+# Play all URLs in browser
+if todays_playlist:
+    print(f"\n🎶 Playing {today}'s playlist...\n")
+    for url in todays_playlist:
+        webbrowser.open_new_tab(url)
+else:
+    print(f"No playlist defined for {today}.")
