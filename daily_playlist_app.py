@@ -1,0 +1,70 @@
+import streamlit as st
+from datetime import datetime
+
+# Daily playlist mapping
+playlists = {
+    "Monday": {
+        "deity": "Lord Shiva",
+        "songs": [
+            ("Shiva Tandava Stotram", "https://www.youtube.com/watch?v=1xH2WzDYIJk"),
+            ("Shiv Bhaktigeet (Marathi)", "https://www.youtube.com/watch?v=I7JBU6I0L-Y"),
+        ],
+    },
+    "Tuesday": {
+        "deity": "Lord Hanuman",
+        "songs": [
+            ("Hanuman Chalisa", "https://www.youtube.com/watch?v=zrYpTzM1kB8"),
+            ("Marathi Hanuman Bhajan", "https://www.youtube.com/watch?v=8yWr_kIw4Rw"),
+        ],
+    },
+    "Wednesday": {
+        "deity": "Lord Krishna",
+        "songs": [
+            ("Krishna Bhajan", "https://www.youtube.com/watch?v=paiHuoG1eDc"),
+            ("Krishna Aarti (Marathi)", "https://www.youtube.com/watch?v=MQWZAbtAh8E"),
+        ],
+    },
+    "Thursday": {
+        "deity": "Sai Baba / Vishnu",
+        "songs": [
+            ("Vishnu Sahasranama", "https://www.youtube.com/watch?v=2T_hnEcHnR8"),
+            ("Sai Baba Bhajan (Marathi)", "https://www.youtube.com/watch?v=g2X6_9mJ6ng"),
+        ],
+    },
+    "Friday": {
+        "deity": "Goddess Lakshmi / Durga",
+        "songs": [
+            ("Laxmi Aarti (Hindi)", "https://www.youtube.com/watch?v=7QUtEmBT_-w"),
+            ("Durga Bhakti (Marathi)", "https://www.youtube.com/watch?v=4Te9CrsHuMs"),
+        ],
+    },
+    "Saturday": {
+        "deity": "Shani Dev / Fun",
+        "songs": [
+            ("Lo-Fi Chill Hindi", "https://www.youtube.com/watch?v=VhQk1h3is2o"),
+            ("Marathi Comedy Song", "https://www.youtube.com/watch?v=TiRx5zq9R4A"),
+        ],
+    },
+    "Sunday": {
+        "deity": "Surya Dev / Fun",
+        "songs": [
+            ("Morning Vibes (Hindi)", "https://www.youtube.com/watch?v=VnYEK7aeE3U"),
+            ("Feel-Good Marathi", "https://www.youtube.com/watch?v=J9t6T1_Rxlo"),
+        ],
+    },
+}
+
+# Get current weekday
+today = datetime.now().strftime("%A")
+today_data = playlists.get(today, {"deity": "Unknown", "songs": []})
+
+# Streamlit UI
+st.set_page_config(page_title="Daily Devotional Playlist", page_icon="🎵")
+st.title("🎧 Daily Devotional Playlist")
+st.subheader(f"🗓️ Today is {today}")
+st.markdown(f"🙏 Dedicated to **{today_data['deity']}**")
+
+st.write("Here are your handpicked devotional and relaxing songs:")
+
+for name, url in today_data["songs"]:
+    st.markdown(f"▶️ [{name}]({url})", unsafe_allow_html=True)
